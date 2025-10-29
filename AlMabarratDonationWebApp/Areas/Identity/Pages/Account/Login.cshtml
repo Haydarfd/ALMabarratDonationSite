@@ -1,0 +1,354 @@
+﻿@page
+@model LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Login</title>
+    <style>
+        :root {
+            --primary: #008000; /* Main green color */
+            --primary-light: #00a000; /* Lighter green */
+            --primary-dark: #006000; /* Darker green */
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --gray-light: #e2e8f0;
+            --danger: #ef4444;
+            --border-radius: 10px;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.2s ease-in-out;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.5;
+        }
+
+        .registration-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .registration-container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .registration-card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .registration-header {
+            text-align: center;
+            padding: 2.5rem 2.5rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+        }
+
+        .logo-circle {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .logo-circle svg {
+                width: 30px;
+                height: 30px;
+            }
+
+        .registration-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .registration-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        form {
+            padding: 2.5rem;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            font-size: 0.95rem;
+            transition: var(--transition);
+            background-color: var(--light);
+        }
+
+            .form-input:focus {
+                outline: none;
+                border-color: var(--primary-light);
+                box-shadow: 0 0 0 3px rgba(0, 128, 0, 0.1);
+                background-color: white;
+            }
+
+        /* Floating labels */
+        .floating label {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            color: var(--gray);
+            pointer-events: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .floating input:focus ~ label,
+        .floating input:not(:placeholder-shown) ~ label {
+            top: -0.5rem;
+            left: 0.8rem;
+            font-size: 0.75rem;
+            background: white;
+            padding: 0 0.2rem;
+            color: var(--primary);
+        }
+
+        .validation-summary {
+            color: var(--danger);
+            background: rgba(239, 68, 68, 0.05);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .validation-message {
+            color: var(--danger);
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+            display: block;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+        }
+
+        .remember-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        .form-check-input {
+            width: 1rem;
+            height: 1rem;
+            border: 1px solid var(--gray-light);
+            border-radius: 4px;
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+            .form-check-input:checked {
+                background-color: var(--primary);
+                border-color: var(--primary);
+            }
+
+        .form-submit {
+            margin: 2rem 0 1rem;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+            .btn-login:hover {
+                background-color: var(--primary-dark);
+                transform: translateY(-2px);
+                box-shadow: var(--shadow);
+            }
+
+        .btn-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        .registration-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .login-prompt {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .login-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+            .login-link:hover {
+                text-decoration: underline;
+            }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+            .footer-links a {
+                color: var(--gray);
+                font-size: 0.85rem;
+                text-decoration: none;
+                transition: var(--transition);
+            }
+
+                .footer-links a:hover {
+                    color: var(--primary);
+                    text-decoration: underline;
+                }
+
+        /* Responsive adjustments */
+        @@media (max-width: 768px) {
+            .registration-card {
+                padding: 1.5rem;
+            }
+
+            .registration-header {
+                padding: 1.5rem 1.5rem 1rem;
+            }
+
+            form {
+                padding: 1.5rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-wrapper">
+        <div class="registration-container">
+            <div class="registration-card">
+                <div class="registration-header">
+                    <div class="logo-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <h1 class="registration-title">@ViewData["Title"]</h1>
+                    <p class="registration-subtitle">Sign in to your account</p>
+                </div>
+
+                <form id="account" method="post">
+                    <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+                    <!-- Email -->
+                    <div class="form-group floating">
+                        <input asp-for="Input.Email" class="form-input" autocomplete="username" aria-required="true" placeholder=" " />
+                        <label asp-for="Input.Email">Email</label>
+                        <span asp-validation-for="Input.Email" class="validation-message"></span>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group floating">
+                        <input asp-for="Input.Password" class="form-input" autocomplete="current-password" aria-required="true" placeholder=" " />
+                        <label asp-for="Input.Password">Password</label>
+                        <span asp-validation-for="Input.Password" class="validation-message"></span>
+                    </div>
+
+                    <!-- Remember Me -->
+                    <div class="remember-me">
+                        <label asp-for="Input.RememberMe" class="remember-label">
+                            <input class="form-check-input" asp-for="Input.RememberMe" />
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
+
+                    <div class="form-submit">
+                        <button id="login-submit" type="submit" class="btn-login">
+                            <span>Log In</span>
+                            <svg class="btn-icon" viewBox="0 0 24 24">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="registration-footer">
+                        <p class="login-prompt">
+                            Don't have an account? <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="login-link">Sign Up</a>
+                        </p>
+                        <div class="footer-links">
+                            <a id="forgot-password" asp-page="./ForgotPassword">Forgot password?</a>
+                            <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend confirmation</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+</body>
+</html>

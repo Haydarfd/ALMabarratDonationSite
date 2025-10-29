@@ -1,0 +1,120 @@
+﻿@model AlMabarratDonationWebApp.Application.ViewModels.CreateOrphanViewModel
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/AddForm.css" asp-append-version="true" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<div class="orphan-form-container">
+    <h2 class="orphan-form-title">Edit Orphan</h2>
+
+    <form asp-action="Edit" method="post" class="orphan-form">
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+        }
+        <input type="hidden" asp-for="OrphanID" />
+
+        <div class="form-group">
+            <label asp-for="FullName" class="form-label">Full Name</label>
+            <input asp-for="FullName" class="form-control" />
+            <span asp-validation-for="FullName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="DateOfBirth" class="form-label">Date of Birth</label>
+            <input asp-for="DateOfBirth" type="date" class="form-control" />
+            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Gender" class="form-label">Gender</label>
+            <select asp-for="Gender" class="form-select">
+                <option value="">-- Select --</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <span asp-validation-for="Gender" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="LostParents" class="form-label">Lost Parents</label>
+            <select asp-for="LostParents" class="form-select">
+                <option value="">-- Select --</option>
+                <option value="Father">Father</option>
+                <option value="Both">Both</option>
+            </select>
+            <span asp-validation-for="LostParents" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Status" class="form-label">Status</label>
+            <select asp-for="Status" class="form-select">
+                <option value="">-- Select Status --</option>
+                <option value="Resident">Resident</option>
+                <option value="Home Stayed">Home Stayed</option>
+                <option value="PartTimeResident">Part-time Resident</option>
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="DateJoined" class="form-label">Date Joined</label>
+            <input asp-for="DateJoined" type="date" class="form-control" />
+            <span asp-validation-for="DateJoined" class="text-danger"></span>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="form-group">
+            <label asp-for="FatherName" class="form-label">Father's Name</label>
+            <input asp-for="FatherName" class="form-control" />
+            <span asp-validation-for="FatherName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="MotherName" class="form-label">Mother's Name</label>
+            <input asp-for="MotherName" class="form-control" />
+            <span asp-validation-for="MotherName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="HealthCondition" class="form-label">Health Condition</label>
+            <input asp-for="HealthCondition" class="form-control" />
+            <span asp-validation-for="HealthCondition" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Nationality" class="form-label">Nationality</label>
+            <select asp-for="Nationality" class="form-select select2-dropdown">
+                <option value="">-- Select Nationality --</option>
+                @foreach (var nationality in Model.NationalityOptions ?? new List<string>())
+                {
+                    <option value="@nationality">@nationality</option>
+                }
+            </select>
+            <span asp-validation-for="Nationality" class="text-danger"></span>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Edit Orphan</button>
+            <a asp-controller="Orphan" asp-action="Index" class="btn btn-secondary">Back to Orphans</a>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.select2-dropdown').select2({
+                minimumResultsForSearch: 5,
+                width: '100%',
+                placeholder: "Search for a nationality"
+            });
+        });
+    </script>
+
+}

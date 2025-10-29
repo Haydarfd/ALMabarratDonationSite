@@ -1,0 +1,79 @@
+﻿/* General Form Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+h1, h2, h3 {
+    color: #007d3a; /* Green color for headings */
+}
+
+/* Form Container */
+#registerForm {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-floating {
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
+.form-control {
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 15px;
+}
+
+    .form-control:focus {
+        border-color: #007d3a;
+        box-shadow: 0 0 5px rgba(0, 125, 58, 0.5);
+    }
+
+/* Register Button */
+#registerSubmit {
+    background-color: #fbc50b; /* Yellow button */
+    border-color: #fbc50b;
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    #registerSubmit:hover {
+        background-color: #e1a100; /* Darker yellow on hover */
+    }
+
+/* External Login Section */
+section {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+button[name="provider"] {
+    background-color: #007d3a; /* Green color for external login buttons */
+    border-color: #007d3a;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    button[name="provider"]:hover {
+        background-color: #005c2e; /* Darker green on hover */
+    }
+
+/* Validation Errors */
+.text-danger {
+    color: #fbc50b; /* Yellow color for error text */
+}

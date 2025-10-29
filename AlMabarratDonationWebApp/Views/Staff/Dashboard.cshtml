@@ -1,0 +1,345 @@
+﻿@{
+    ViewData["Title"] = "Staff Dashboard";
+}
+@{
+    Layout = "_StaffLayout";
+}
+<!-- Dashboard Content -->
+<main class="p-6">
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="dashboard-card bg-white p-6 rounded-lg shadow">
+            <div class="flex items-center">
+                <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                    <i class="fas fa-hand-holding-heart text-xl"></i>
+                </div>
+                <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-500">Active Sponsorships</p>
+                    <p class="text-2xl font-semibold text-gray-800">328</p>
+                </div>
+            </div>
+            <div class="mt-4">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-green-500">+15.2%</span>
+                    <span>vs last month</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-card bg-white p-6 rounded-lg shadow">
+            <div class="flex items-center">
+                <div class="p-3 rounded-full bg-green-100 text-green-600">
+                    <i class="fas fa-child text-xl"></i>
+                </div>
+                <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-500">Orphans Supported</p>
+                    <p class="text-2xl font-semibold text-gray-800">276</p>
+                </div>
+            </div>
+            <div class="mt-4">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-green-500">+9.7%</span>
+                    <span>vs last month</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-card bg-white p-6 rounded-lg shadow">
+            <div class="flex items-center">
+                <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                    <i class="fas fa-clock text-xl"></i>
+                </div>
+                <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-500">Pending Requests</p>
+                    <p class="text-2xl font-semibold text-gray-800">42</p>
+                </div>
+            </div>
+            <div class="mt-4">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-red-500">+3.5%</span>
+                    <span>vs last month</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-card bg-white p-6 rounded-lg shadow">
+            <div class="flex items-center">
+                <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
+                    <i class="fas fa-user-friends text-xl"></i>
+                </div>
+                <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-500">Active Donors</p>
+                    <p class="text-2xl font-semibold text-gray-800">312</p>
+                </div>
+            </div>
+            <div class="mt-4">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-green-500">+6.8%</span>
+                    <span>vs last month</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Assignments and Pending Requests -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <!-- Recent Assignments -->
+        <div class="lg:col-span-2 bg-white p-6 rounded-lg shadow">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-lg font-semibold text-gray-800">Recent Assignments</h2>
+                <button class="text-sm text-blue-600 hover:text-blue-800">View All</button>
+            </div>
+
+            <div class="space-y-4">
+                <div class="flex items-start">
+                    <div class="p-2 rounded-full bg-green-100 text-green-600 mr-4">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-gray-800">New sponsorship assigned</p>
+                        <p class="text-xs text-gray-500">Orphan <span class="font-medium">Aisha (8)</span> assigned to donor <span class="font-medium">mohammed.ahmed@email.com</span></p>
+                        <p class="text-xs text-gray-400 mt-1">1 hour ago</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <div class="p-2 rounded-full bg-blue-100 text-blue-600 mr-4">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-gray-800">Sponsorship renewed</p>
+                        <p class="text-xs text-gray-500">Donor <span class="font-medium">fatima.khalid@email.com</span> renewed sponsorship for <span class="font-medium">Yousef (10)</span></p>
+                        <p class="text-xs text-gray-400 mt-1">3 hours ago</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <div class="p-2 rounded-full bg-purple-100 text-purple-600 mr-4">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-gray-800">New request received</p>
+                        <p class="text-xs text-gray-500">Donor <span class="font-medium">ali.hassan@email.com</span> requested a female orphan aged 5-8</p>
+                        <p class="text-xs text-gray-400 mt-1">5 hours ago</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Requests -->
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-lg font-semibold text-gray-800 mb-6">Pending Requests</h2>
+
+            <div class="space-y-4">
+                <div class="border-l-4 border-yellow-500 pl-4 py-2">
+                    <p class="text-sm font-medium">Request #4582</p>
+                    <p class="text-xs text-gray-600">Donor: khaled.omar@email.com</p>
+                    <p class="text-xs text-gray-600">Prefers: Male, 6-10 years</p>
+                    <button class="mt-2 text-xs px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                        Assign Orphan
+                    </button>
+                </div>
+
+                <div class="border-l-4 border-yellow-500 pl-4 py-2">
+                    <p class="text-sm font-medium">Request #4581</p>
+                    <p class="text-xs text-gray-600">Donor: layla.mohammed@email.com</p>
+                    <p class="text-xs text-gray-600">Prefers: Female, any age</p>
+                    <button class="mt-2 text-xs px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                        Assign Orphan
+                    </button>
+                </div>
+
+                <div class="border-l-4 border-yellow-500 pl-4 py-2">
+                    <p class="text-sm font-medium">Request #4580</p>
+                    <p class="text-xs text-gray-600">Donor: abdullah.saleh@email.com</p>
+                    <p class="text-xs text-gray-600">Prefers: Male, under 5 years</p>
+                    <button class="mt-2 text-xs px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                        Assign Orphan
+                    </button>
+                </div>
+            </div>
+
+            <button class="mt-6 w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                View All Requests
+            </button>
+        </div>
+    </div>
+
+    <!-- Orphan Assignment Section -->
+    <div class="bg-white p-6 rounded-lg shadow mb-8">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-lg font-semibold text-gray-800">Available Orphans</h2>
+            <div class="flex space-x-3">
+                <select class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+                    <option>Filter by Age</option>
+                    <option>0-5 years</option>
+                    <option>6-10 years</option>
+                    <option>11-15 years</option>
+                    <option>16+ years</option>
+                </select>
+                <select class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+                    <option>Filter by Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Orphans Table -->
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Age</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Gender</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Join Date</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="font-medium text-gray-900">Aisha Mohammed</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-gray-500">8</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-gray-500">Female</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-gray-500">15/03/2023</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Available</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <button class="text-blue-600 hover:text-blue-900 mr-3 assign-btn" data-orphan-id="123">
+                                Assign
+                            </button>
+                            <a href="#" class="text-gray-600 hover:text-gray-900">Details</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="font-medium text-gray-900">Yousef Ahmed</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-gray-500">10</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-gray-500">Male</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-gray-500">22/02/2023</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800">Sponsored</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <button class="text-gray-400 mr-3" disabled>Assign</button>
+                            <a href="#" class="text-gray-600 hover:text-gray-900">Details</a>
+                        </td>
+                    </tr>
+                    <!-- More rows... -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<!-- Assign Orphan Modal -->
+<div id="assignModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white rounded-lg w-full max-w-md">
+        <div class="flex items-center justify-between p-4 border-b">
+            <h3 class="text-lg font-semibold text-gray-800">Assign Orphan</h3>
+            <button id="closeAssignModal" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <form id="assignForm" class="p-6">
+            <input type="hidden" id="orphanId" name="orphanId">
+
+            <div class="mb-4">
+                <label for="donorSearch" class="block text-sm font-medium text-gray-700 mb-1">Search Donor</label>
+                <select id="donorSearch" class="donor-search w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option></option>
+                    <option value="1">mohammed.ahmed@email.com</option>
+                    <option value="2">fatima.khalid@email.com</option>
+                    <option value="3">ali.hassan@email.com</option>
+                    <option value="4">khaled.omar@email.com</option>
+                    <option value="5">layla.mohammed@email.com</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-1">Donor Preferences</label>
+                <div class="bg-gray-50 p-3 rounded-md">
+                    <p class="text-sm"><span class="font-medium">Gender:</span> Female</p>
+                    <p class="text-sm"><span class="font-medium">Age Range:</span> 5-10 years</p>
+                    <p class="text-sm"><span class="font-medium">Special Requests:</span> None</p>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-end space-x-3">
+                <button type="button" id="cancelAssignModal" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+                    Cancel
+                </button>
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                    Confirm Assignment
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Assign Modal handling
+        const assignModal = document.getElementById('assignModal');
+        const closeAssignBtn = document.getElementById('closeAssignModal');
+        const cancelAssignBtn = document.getElementById('cancelAssignModal');
+
+        // Open modal when assign button is clicked
+        document.querySelectorAll('.assign-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const orphanId = btn.getAttribute('data-orphan-id');
+                document.getElementById('orphanId').value = orphanId;
+                assignModal.classList.remove('hidden');
+            });
+        });
+
+        closeAssignBtn.addEventListener('click', () => {
+            assignModal.classList.add('hidden');
+        });
+
+        cancelAssignBtn.addEventListener('click', () => {
+            assignModal.classList.add('hidden');
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target === assignModal) {
+                assignModal.classList.add('hidden');
+            }
+        });
+
+        // Form submission
+        document.getElementById('assignForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const orphanId = document.getElementById('orphanId').value;
+            const donorId = document.getElementById('donorSearch').value;
+
+            // In a real app, this would be an AJAX call
+            Swal.fire({
+                title: 'Assignment Successful',
+                text: `Orphan ${orphanId} has been assigned to donor ${donorId}`,
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                assignModal.classList.add('hidden');
+                // You would typically refresh the data here
+            });
+        });
+
+        // Initialize Select2 for donor search
+        $(document).ready(function() {
+            $('.donor-search').select2({
+                placeholder: "Search donor by email...",
+                allowClear: true
+            });
+        });
+    </script>
+}

@@ -1,0 +1,267 @@
+﻿/* Base Transitions & Visibility */
+.dataTables_wrapper {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    min-height: 400px;
+    position: relative;
+    will-change: opacity, transform;
+}
+
+/* Table Styling - Applies to BOTH tables */
+#staffTable,
+#orphansTable,
+#donorsTable {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+    #staffTable.loaded,
+    #orphansTable.loaded,
+    #donorsTable.loaded { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+/* Loading Spinner */
+.dataTables_processing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    transition: opacity 0.3s ease;
+}
+
+    .dataTables_processing .spinner-border {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-width: 0.25em;
+    }
+
+/* Containers */
+.custom-table-container,
+.grid-section {
+    padding: 15px;
+    margin: 15px 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+    /* Ensure action buttons stay on one line */
+    .custom-table-container .btn-link {
+        line-height: 1;
+        padding: 0;
+        margin: 0;
+        vertical-align: middle;
+    }
+
+    /* Remove any default form margins */
+    .custom-table-container form {
+        margin: 10px;
+        display: inline-block;
+    }
+/* Table Layout */
+.table thead {
+    background-color: #f8f9fa;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table th,
+.table td {
+    padding: 8px 10px !important;
+    vertical-align: middle;
+    transition: background-color 0.2s ease;
+}
+
+.table tbody tr {
+    background-color: white;
+    transition: all 0.2s ease;
+}
+
+    .table tbody tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+
+    .table tbody tr:hover {
+        background-color: #e9ecef;
+        transform: translateX(2px);
+    }
+
+/* Buttons & Actions */
+a.btn-primary {
+    background-color: #4CAF50;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+    a.btn-primary:hover {
+        background-color: #3d8b40;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+/* Action Buttons - Specific fixes for alignment */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    min-width: 100px;
+}
+
+    .action-buttons form {
+        margin: 0;
+        display: inline-block;
+        line-height: 1;
+    }
+
+    .action-buttons .btn-link {
+        padding: 0;
+        border: 0;
+        background: transparent;
+        line-height: 1;
+    }
+
+/* Icons */
+i {
+    font-size: 1.1rem;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    vertical-align: middle;
+}
+
+.text-success i {
+    color: #28a745 !important;
+}
+
+i.text-danger {
+    color: #dc3545 !important;
+}
+
+i:hover {
+    transform: scale(1.2);
+}
+
+/* Badges */
+.badge {
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+    .badge.bg-success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .badge.bg-warning {
+        background-color: #fff3cd;
+        color: #856404;
+    }
+
+    .badge.bg-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .custom-table-container,
+    .grid-section {
+        margin: 10px 0;
+        padding: 12px;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #staffTable,
+    #orphansTable,
+    #donorsTable {
+        min-width: 1100px;
+    }
+
+    .dataTables_wrapper {
+        min-height: 350px;
+    }
+}
+
+/* Pagination */
+.pagination .page-item.active .page-link {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.pagination .page-link {
+    color: #4CAF50;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+/* Loading Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.table-loaded {
+    animation: fadeInUp 0.5s ease forwards;
+}
+/* Add this to your CSS */
+#staffTable tbody tr,
+#orphansTable tbody tr,
+#donorsTable tbody tr{
+    height: 48px; /* Fixed height */
+    margin: 10px !important;
+    padding: 0 !important;
+}
+
+#staffTable tbody td,
+#orphansTable tbody td,
+#donorsTable tbody td {
+    padding: 8px 10px !important;
+    margin: 10px !important;
+    vertical-align: middle;
+    border-spacing: 0 !important;
+}
+#staffTable,
+#orphansTable,
+#donorsTable{
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+tr {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}

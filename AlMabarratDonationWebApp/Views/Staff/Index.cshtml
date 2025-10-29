@@ -1,0 +1,179 @@
+﻿@model IEnumerable<AlMabarratDonationWebApp.Application.ViewModels.StaffViewModel>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Staff Management";
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+
+<section class="grid-section">
+    <div class="content-container d-flex align-items-center">
+        <h4 class="pt-1 mb-0">Total Staff:</h4>
+        <p id="topNb" class="mb-0 ms-3">
+            <strong>@Model.Count()</strong>
+        </p>
+    </div>
+</section>
+
+<div class="card custom-table-container">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="staffTable" class="table text-center">
+                <thead>
+                    <tr>
+                        <th>Staff Email</th>
+                        <th>Full Name</th>
+                        <th>Phone Number</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>Postal Code</th>
+                        <th>Country</th>
+                        <th>Join Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var staff in Model)
+                    {
+                        <tr>
+                            <td>@staff.Email</td>
+                            <td>@staff.FullName</td>
+                            <td>@staff.PhoneNumber</td>
+                            <td>@staff.Address</td>
+                            <td>@staff.City</td>
+                            <td>@staff.PostalCode</td>
+                            <td>@staff.Country</td>
+                            <td>@staff.JoinDate.ToShortDateString()</td>
+                            <td>
+                                <span class="badge @(staff.IsActive ? "bg-success" : "bg-danger")">
+                                    @(staff.IsActive ? "Active" : "Inactive")
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center gap-2">
+                                    <a asp-action="Edit" asp-route-id="@staff.StaffID" class="text-success" title="Edit">
+                                        <i class="bx bx-edit"></i>
+                                    </a>
+                                    <form method="post" asp-controller="Staff" asp-action="Delete" asp-route-id="@staff.StaffID"
+                                          class="d-inline" onsubmit="return confirmDelete(this, event);">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-link p-0" title="Delete">
+                                            <i class="bx bx-trash text-danger"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<section class="grid-section">
+    <div class="button-container">
+        <a asp-controller="Staff" asp-action="Create" class="btn btn-primary">
+            <i class='bx bx-plus'></i> Add Staff
+        </a>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Destroy existing instance if it exists
+            if ($.fn.DataTable.isDataTable('#staffTable')) {
+                $('#staffTable').DataTable().destroy();
+            }
+
+            // Initialize with smooth loading
+            var table = $('#staffTable').DataTable({
+                "initComplete": function () {
+                    $(this).addClass('loaded table-loaded');
+                    $('.dataTables_wrapper').css('opacity', 1);
+                },
+                "columnDefs": [
+                    { "orderable": false, "targets": [9] } // Make Actions column non-sortable
+                ],
+                "deferRender": true,
+                "responsive": true,
+                "processing": true,
+                "lengthMenu": [5, 10, 25, 50, 100],
+                "pageLength": 5,
+                "language": {
+                    "lengthMenu": "Display _MENU_ Staff",
+                    "zeroRecords": "No Staff Found",
+                    "info": "Page _PAGE_ of _PAGES_",
+                    "infoEmpty": "No data available",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "search": "🔎 Search:",
+                    "paginate": {
+                        "previous": "Previous",
+                        "next": "Next",
+                        "first": "First",
+                        "last": "Last"
+                    },
+                    "processing": '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>'
+                },
+                "dom": '<"d-flex justify-content-between align-items-center mb-3"<"left-section d-flex align-items-center"Bl><"right-section"f>>rt<"d-flex justify-content-between align-items-center mt-3"<"left-section"i><"right-section"p>>',
+                "buttons": [
+                    {
+                        extend: 'copy',
+                        text: '<i class="fas fa-copy"></i> Copy',
+                        className: 'btn btn-sm btn-outline-secondary',
+                        exportOptions: { columns: ':not(:last-child)' }
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="fas fa-file-excel"></i> Excel',
+                        className: 'btn btn-sm btn-outline-success',
+                        exportOptions: { columns: ':not(:last-child)' }
+                    },
+                    {
+                        extend: 'pdf',
+                        text: '<i class="fas fa-file-pdf"></i> PDF',
+                        className: 'btn btn-sm btn-outline-danger',
+                        exportOptions: { columns: ':not(:last-child)' }
+                    },
+                    {
+                        extend: 'print',
+                        text: '<i class="fas fa-print"></i> Print',
+                        className: 'btn btn-sm btn-outline-primary',
+                        exportOptions: { columns: ':not(:last-child)' }
+                    }
+                ]
+            });
+
+            // Smooth search input
+            $('.dataTables_filter input')
+                .attr('')
+                .addClass('form-control form-control-sm')
+                .css('transition', 'all 0.3s ease');
+        });
+
+        function confirmDelete(form, event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
+    </script>
+}

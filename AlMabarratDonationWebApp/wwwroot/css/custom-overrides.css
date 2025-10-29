@@ -1,0 +1,5 @@
+﻿/* Force text color to black for tables */
+#sponsorshipRequestsTable th, #sponsorshipRequestsTable td {
+    color: #333 !important; /* Dark gray instead of white */
+    background-color: #f9f9f9 !important; /* Light gray for readability */
+}

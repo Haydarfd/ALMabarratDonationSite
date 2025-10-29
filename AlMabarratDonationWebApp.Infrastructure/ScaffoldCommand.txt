@@ -1,0 +1,12 @@
+﻿Scaffold-DbContext "Server=.\SQLEXPRESS;Database=AlMabarratCommunity;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir "..\AlMabarratDonationWebApp.Core\Entities" -Context "AppDbContext" -ContextDir "..\AlMabarratDonationWebApp.Infrastructure\Data" -Namespace "AlMabarratDonationWebApp.Core.Entities" -ContextNamespace "AlMabarratDonationWebApp.Infrastructure.Data" -DataAnnotations -UseDatabaseNames -Force -NoOnConfiguring
+
+Edits : 
+1-The relationship between the donor and the orphan is many to many DONE
+2-Add Special Condition table in the data base ( health condition ) DONE
+3-A Searcheable DropDown List for the Country 
+4-Nationality Column DONE
+5-Status ( drop down list ):Full-Time Resident Orphan / Part-Time Orphan / Non-Resident Orphan DONE
+6-Decide if we're gonnna use viewmodel / dtos 
+7-split 2 new columns form of sponsorship request ( PaymentType / SponsorshipType )
+8-Is Sponsored / sponsorshipp type ( add in the table of orphan )DONE
+9-
